@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 
 const authorsSchema = mongoose.Schema({
-    name: String,
+    name: { type:String, required:true },
     dob: String,
-    age: Number
+    age: Number,
+    books: { type: Array, "default": [] },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 })
 
-const authorsModel = mongoose.model('Authors', authorsSchema);
+const Author = mongoose.model('Authors', authorsSchema);
 
-export default authorsModel;
+export default Author;
